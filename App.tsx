@@ -1,12 +1,11 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Play, Music, Heart, Home as HomeIcon, Video as VideoIcon, 
   Gamepad2, Sun, Moon, X, Search, Download, Baby, ShieldCheck,
-  Youtube, Instagram, LucideIcon
+  Youtube, Instagram, LucideIcon, Tv
 } from 'lucide-react';
 import { VIDEOS, SONGS, GAMES, CHARACTERS } from './constants';
-import { Game, Song } from './types';
+import { Game, Song, Video } from './types';
 
 const TikTokIcon = ({ size = 24 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -29,7 +28,7 @@ export default function App() {
   const [diaryEntries, setDiaryEntries] = useState<any[]>([]);
   const [newNote, setNewNote] = useState('');
   const [playingGame, setPlayingGame] = useState<Game | null>(null);
-  const [currentSong, setCurrentSong] = useState<Song | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [showWin, setShowWin] = useState(false);
   const [isNight, setIsNight] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -75,7 +74,7 @@ export default function App() {
         setPlayingGame(null);
         setFlippedCards([]);
         setMatchedPairs([]);
-      }, 2500);
+      }, 3000);
     }
   };
 
@@ -114,12 +113,11 @@ export default function App() {
     ${activeTab === item.id ? `${item.color} ring-2 ring-white scale-105 border-b-0 translate-y-1` : 'bg-black/10 hover:bg-black/20'}
   `;
 
-  // Dynamic Greeting Icon
   const GreetingIcon = isNight ? Moon : Sun;
 
   return (
     <div className={`min-h-screen flex flex-col transition-colors duration-1000 ${isNight ? 'bg-[#1e293b]' : 'bg-[#7dd3fc]'}`}>
-      <header className={`sticky top-0 z-50 border-b-8 px-4 py-4 shadow-xl transition-colors duration-1000 ${isNight ? 'bg-[#334155] border-[#1e293b]' : 'bg-[#FFD700] border-[#FDB813]'}`}>
+      <header className={`sticky top-0 z-[60] border-b-8 px-4 py-4 shadow-xl transition-colors duration-1000 ${isNight ? 'bg-[#334155] border-[#1e293b]' : 'bg-[#FFD700] border-[#FDB813]'}`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div onClick={() => {setActiveTab('home'); setPlayingGame(null);}} className="cursor-pointer hover:scale-110 transition-transform"><Logo size="sm" /></div>
           <nav className="flex gap-2 overflow-x-auto no-scrollbar w-full md:w-auto justify-center py-2 px-4">
@@ -138,14 +136,34 @@ export default function App() {
         </div>
       </header>
 
+      {/* Video TV Modal */}
+      {selectedVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white p-2 rounded-[50px] shadow-2xl relative max-w-5xl w-full aspect-video border-[16px] border-gray-100">
+            <button 
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-12 -right-4 text-white hover:text-red-400 transition-colors bg-black/20 rounded-full p-2"
+            >
+              <X size={48} />
+            </button>
+            <iframe 
+              src={selectedVideo.url}
+              className="w-full h-full rounded-[35px]"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
+
       <main className="flex-grow container mx-auto px-4 py-8 pb-32">
         {activeTab === 'home' && !playingGame && (
           <div className="space-y-20 animate-in fade-in duration-700">
             <section className="bg-white/10 backdrop-blur-md p-12 md:p-16 rounded-[80px] border-4 border-white shadow-2xl text-center">
               <Logo size="lg" />
               <div className="flex items-center justify-center gap-4 text-4xl font-kids text-white mt-8">
-                <GreetingIcon className="text-yellow-300" size={60} />
-                <span className="font-bold">{isNight ? 'Boa noite!' : 'Bom dia!'}</span>
+                <GreetingIcon className="text-yellow-300 animate-pulse" size={60} />
+                <span className="font-bold">{isNight ? 'Boa noite, amiguinho!' : 'Bom dia, amiguinho!'}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 max-w-6xl mx-auto">
                 {[
@@ -209,6 +227,7 @@ export default function App() {
             <div className="bg-white rounded-[60px] p-8 md:p-12 shadow-2xl border-b-[24px] border-gray-200 text-center relative overflow-hidden">
               {showWin && (
                 <div className="absolute inset-0 z-10 bg-emerald-500/95 flex flex-col items-center justify-center text-white animate-in slide-in-from-top-full duration-500">
+                  <span className="text-9xl mb-8">🏆</span>
                   <h2 className="text-7xl font-kids uppercase drop-shadow-md">VOCÊ É DEMAIS!</h2>
                   <p className="text-2xl font-kids mt-2 opacity-90 font-bold">Parabéns pelo excelente trabalho!</p>
                 </div>
@@ -247,14 +266,14 @@ export default function App() {
         {activeTab === 'videos' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 animate-in fade-in duration-500">
             {VIDEOS.map(v => (
-              <div key={v.id} className="bg-white p-6 rounded-[60px] shadow-2xl hover:-translate-y-4 transition-all group cursor-pointer border-b-[16px] border-gray-100">
+              <div key={v.id} onClick={() => setSelectedVideo(v)} className="bg-white p-6 rounded-[60px] shadow-2xl hover:-translate-y-4 transition-all group cursor-pointer border-b-[16px] border-gray-100">
                 <div className="relative overflow-hidden rounded-[45px]">
                   <img src={v.thumbnail} className="w-full aspect-video object-cover" />
                   <div className="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="bg-white/90 p-8 rounded-full"><Play size={60} className="text-rose-500" fill="currentColor" /></div>
                   </div>
                 </div>
-                <h3 className="font-kids text-2xl text-blue-900 mt-8 font-black text-center leading-tight">{v.title}</h3>
+                <h3 className="font-kids text-2xl text-blue-900 mt-8 font-black text-center leading-tight px-2">{v.title}</h3>
               </div>
             ))}
           </div>
@@ -281,12 +300,12 @@ export default function App() {
 
               <div className="space-y-10">
                 <div className="bg-pink-50/30 p-8 rounded-[60px] border-b-8 border-pink-50">
-                  <label className="block text-2xl font-kids text-pink-700 font-black mb-6">Qual foi a descoberta de hoje?</label>
+                  <label className="block text-2xl font-kids text-pink-700 font-black mb-6">O que aconteceu de especial hoje?</label>
                   <textarea 
                     value={newNote} 
                     onChange={(e) => setNewNote(e.target.value)} 
                     className="w-full p-8 text-2xl rounded-[40px] border-4 border-white outline-none font-kids min-h-[300px] shadow-inner focus:ring-4 focus:ring-pink-200 transition-all" 
-                    placeholder="Escreva aqui sobre o seu pequeno..."
+                    placeholder="Escreva aqui..."
                   />
                 </div>
 
@@ -331,7 +350,7 @@ export default function App() {
       </footer>
 
       {/* Navegação Mobile Fixa */}
-      <div className="lg:hidden fixed bottom-6 left-6 right-6 z-[100] bg-white/95 backdrop-blur-2xl rounded-[50px] shadow-[0_-15px_60px_rgba(0,0,0,0.2)] p-4 flex justify-between items-center border-b-4 border-gray-100">
+      <div className="lg:hidden fixed bottom-6 left-6 right-6 z-[60] bg-white/95 backdrop-blur-2xl rounded-[50px] shadow-[0_-15px_60px_rgba(0,0,0,0.2)] p-4 flex justify-between items-center border-b-4 border-gray-100">
         {[
           { id: 'home', icon: HomeIcon, color: 'bg-orange-400' },
           { id: 'videos', icon: VideoIcon, color: 'bg-rose-400' },
