@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyPop</title>
+    <title>BabyPop Oficial</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
     <style>
         body { background: linear-gradient(to bottom, #87ceeb, #7CFC00); font-family: 'Fredoka', sans-serif; margin: 0; text-align: center; }
@@ -12,13 +12,17 @@
         .menu { margin: 15px 0; }
         .btn { display: inline-block; background: #FFD700; color: black; padding: 12px 20px; margin: 5px; border-radius: 25px; text-decoration: none; font-weight: bold; border: 2px solid black; }
         
-        /* Lógica das Abas */
-        .secao { display: none; background: white; margin: 20px auto; padding: 30px; border-radius: 30px; border: 5px solid #FF69B4; max-width: 1000px; }
+        .secao { display: none; background: white; margin: 20px auto; padding: 20px; border-radius: 30px; border: 5px solid #FF69B4; max-width: 1000px; }
         .secao:target { display: block; }
-        #personagens { display: block; } /* Mostra personagens ao carregar */
+        #personagens { display: block; }
         #personagens:has(~ .secao:target) { display: none; }
 
-        /* Fotos Padronizadas */
+        /* Lista de Itens (50 espaços) */
+        .lista-itens { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
+        .item-box { background: #f0f0f0; border: 3px dashed #ccc; border-radius: 20px; padding: 20px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
+        
+        .video-player { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; margin-bottom: 10px; border: none; }
+
         .grade { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .caixa { width: 300px; border: 2px solid #ddd; border-radius: 20px; padding: 10px; background: #fff; }
         .caixa img { width: 300px; height: 300px; object-fit: contain; }
@@ -29,12 +33,45 @@
 <header>
     <h1>BabyPop</h1>
     <div class="menu">
-        <a href="#videos" class="btn">📺 VÍDEOS</a>
-        <a href="#musicas" class="btn">🎵 MÚSICAS</a>
-        <a href="#jogos" class="btn">🎮 JOGOS</a>
+        <a href="#videos" class="btn">📺 50 VÍDEOS</a>
+        <a href="#musicas" class="btn">🎵 50 MÚSICAS</a>
+        <a href="#jogos" class="btn">🎮 50 JOGOS</a>
         <a href="#personagens" class="btn">🎈 PERSONAGENS</a>
     </div>
 </header>
+
+<div id="videos" class="secao">
+    <h2>📺 Galeria de Vídeos (1 a 50)</h2>
+    <div class="lista-itens" id="lista-v">
+        <div class="item-box">
+            <p>Vídeo 01</p>
+            <iframe class="video-player" src="https://www.youtube.com/embed/XqZsoesa55w" allowfullscreen></iframe>
+        </div>
+        <div class="item-box">
+            <p>Vídeo 02</p>
+            <iframe class="video-player" src="https://www.youtube.com/embed/XqZsoesa55w" allowfullscreen></iframe>
+        </div>
+        <p>Espaços 03 a 50 reservados...</p>
+    </div>
+</div>
+
+<div id="musicas" class="secao">
+    <h2>🎵 Minhas 50 Músicas</h2>
+    <div class="lista-itens">
+        <div class="item-box">Música 01 - Disponível</div>
+        <div class="item-box">Música 02 - Disponível</div>
+        <div class="item-box">Música 03 a 50 - Disponível</div>
+    </div>
+</div>
+
+<div id="jogos" class="secao">
+    <h2>🎮 Meus 50 Jogos</h2>
+    <div class="lista-itens">
+        <div class="item-box">Jogo 01 - Disponível</div>
+        <div class="item-box">Jogo 02 - Disponível</div>
+        <div class="item-box">Jogo 03 a 50 - Disponível</div>
+    </div>
+</div>
 
 <div id="personagens" class="secao">
     <h2>Nossos Personagens</h2>
@@ -53,10 +90,6 @@
         <div class="caixa"><img src="passarinho.png"><p>Passarinho</p></div>
     </div>
 </div>
-
-<div id="videos" class="secao"><h2>📺 Vídeos</h2><p>Conteúdo em breve...</p></div>
-<div id="musicas" class="secao"><h2>🎵 Músicas</h2><p>Conteúdo em breve...</p></div>
-<div id="jogos" class="secao"><h2>🎮 Jogos</h2><p>Conteúdo em breve...</p></div>
 
 </body>
 </html>
