@@ -3,30 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyPop - Aprender Brincando</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>BabyPop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Quicksand', sans-serif; overflow-x: hidden; }
-        .font-kids { font-family: 'Fredoka', sans-serif; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body {
+            background: linear-gradient(to bottom, #00BFFF, #7CFC00);
+            font-family: 'Fredoka', sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #FF1493;
+            font-size: 80px;
+            margin: 10px 0;
+            text-shadow: 3px 3px 0px #FFF;
+        }
+        h2 { color: #FF4500; font-size: 40px; background: white; display: inline-block; padding: 5px 20px; border-radius: 20px; }
+        p { font-size: 28px; color: #FFF; font-weight: bold; text-shadow: 1px 1px 2px #000; }
+        
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .personagem {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            border: 5px solid #FF69B4;
+            width: 200px;
+        }
+        .brinquedo { border-color: #00BFFF; }
+        img { max-width: 180px; height: auto; border-radius: 15px; }
+        .nome-pj { font-size: 20px; font-weight: bold; color: #333; margin-top: 10px; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
-  }
-}
-</script>
 </head>
-<body class="bg-[#7dd3fc]">
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+<body>
+
+    <h1>BabyPop</h1>
+    <p>Aprender brincando!</p>
+
+    <h2>Família e Amigos</h2>
+    <div class="galeria">
+        <div class="personagem"><img src="pj.png" alt="PJ BabyPop"><div class="nome-pj">PJ BabyPop</div></div>
+        <div class="personagem"><img src="mia.png" alt="Mia"><div class="nome-pj">Mia</div></div>
+        <div class="personagem"><img src="mio.png" alt="Mio"><div class="nome-pj">Mio</div></div>
+        <div class="personagem"><img src="mae.png" alt="Mãe"><div class="nome-pj">Mãe</div></div>
+        <div class="personagem"><img src="pai.png" alt="Pai"><div class="nome-pj">Pai</div></div>
+        <div class="personagem"><img src="jami.png" alt="Jami"><div class="nome-pj">Jami o Cachorrinho</div></div>
+        <div class="personagem"><img src="gato.png" alt="Gato"><div class="nome-pj">Gato Cinza</div></div>
+    </div>
+
+    <h2>Brinquedos de Borracha</h2>
+    <div class="galeria">
+        <div class="personagem brinquedo"><img src="pato.png" alt="Pato"><div class="nome-pj">Pato Amarelo</div></div>
+        <div class="personagem brinquedo"><img src="coelho.png" alt="Coelho"><div class="nome-pj">Coelho Albino</div></div>
+        <div class="personagem brinquedo"><img src="urso.png" alt="Urso"><div class="nome-pj">Urso Marrom</div></div>
+        <div class="personagem brinquedo"><img src="tartaruga.png" alt="Tartaruga"><div class="nome-pj">Tartaruga Verde</div></div>
+        <div class="personagem brinquedo"><img src="passarinho.png" alt="Passarinho"><div class="nome-pj">Passarinho Azul</div></div>
+    </div>
+
 </body>
 </html>
