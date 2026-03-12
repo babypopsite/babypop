@@ -2,94 +2,170 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyPop Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BabyPop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background: linear-gradient(to bottom, #87ceeb, #7CFC00); font-family: 'Fredoka', sans-serif; margin: 0; text-align: center; }
-        header { background: white; padding: 15px; border-bottom: 5px solid #FFD700; position: sticky; top: 0; z-index: 100; }
-        h1 { color: #FF69B4; margin: 0; font-size: 40px; }
-        .menu { margin: 15px 0; }
-        .btn { display: inline-block; background: #FFD700; color: black; padding: 12px 20px; margin: 5px; border-radius: 25px; text-decoration: none; font-weight: bold; border: 2px solid black; }
+        :root {
+            --bg-principal: #FFFFFF;
+            --bg-secundario: #F7F9F9;
+            --cor-borda: #EFF3F4;
+            --texto: #0F1419;
+            --destaque: #1D9BF0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        .secao { display: none; background: white; margin: 20px auto; padding: 20px; border-radius: 30px; border: 5px solid #FF69B4; max-width: 1000px; }
-        .secao:target { display: block; }
+        body { 
+            background-color: var(--bg-principal); 
+            font-family: 'Inter', sans-serif; 
+            color: var(--texto);
+            line-height: 1.3;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .topo-logo {
+            padding: 15px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            width: 100%;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .tab-item {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            text-decoration: none;
+            color: #536471;
+            font-weight: 600;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .feed { max-width: 600px; margin: 0 auto; min-height: 100vh; }
+        
+        .section { display: none; padding: 15px; }
+        .section:target { display: block; }
         #personagens { display: block; }
-        #personagens:has(~ .secao:target) { display: none; }
+        #personagens:has(~ .section:target) { display: none; }
 
-        /* Lista de Itens (50 espaços) */
-        .lista-itens { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 10px; }
-        .item-box { background: #f0f0f0; border: 3px dashed #ccc; border-radius: 20px; padding: 20px; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
-        
-        .video-player { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; margin-bottom: 10px; border: none; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
 
-        .grade { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .caixa { width: 300px; border: 2px solid #ddd; border-radius: 20px; padding: 10px; background: #fff; }
-        .caixa img { width: 300px; height: 300px; object-fit: contain; }
+        .card-pessoal {
+            background: var(--bg-secundario);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--cor-borda);
+        }
+
+        .card-pessoal img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-nome {
+            padding: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .media-box {
+            width: 100%;
+            background: #000;
+            border-radius: 16px;
+            aspect-ratio: 16/9;
+            margin-bottom: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .media-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .placeholder-box {
+            background: var(--bg-secundario);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px dashed #CFD9DE;
+            color: #536471;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>BabyPop</h1>
-    <div class="menu">
-        <a href="#videos" class="btn">📺 50 VÍDEOS</a>
-        <a href="#musicas" class="btn">🎵 50 MÚSICAS</a>
-        <a href="#jogos" class="btn">🎮 50 JOGOS</a>
-        <a href="#personagens" class="btn">🎈 PERSONAGENS</a>
-    </div>
+    <div class="topo-logo">BabyPop</div>
+    <nav class="nav-tabs">
+        <a href="#v" class="tab-item">Vídeos</a>
+        <a href="#m" class="tab-item">Músicas</a>
+        <a href="#j" class="tab-item">Jogos</a>
+        <a href="#personagens" class="tab-item">Personagens</a>
+    </nav>
 </header>
 
-<div id="videos" class="secao">
-    <h2>📺 Galeria de Vídeos (1 a 50)</h2>
-    <div class="lista-itens" id="lista-v">
-        <div class="item-box">
-            <p>Vídeo 01</p>
-            <iframe class="video-player" src="https://www.youtube.com/embed/XqZsoesa55w" allowfullscreen></iframe>
+<main class="feed">
+
+    <div id="personagens" class="section">
+        <div class="grid-container">
+            <div class="card-pessoal"><img src="pj.png"><div class="card-nome">PJ</div></div>
+            <div class="card-pessoal"><img src="mia.png"><div class="card-nome">Mia</div></div>
+            <div class="card-pessoal"><img src="mio.png"><div class="card-nome">Mio</div></div>
+            <div class="card-pessoal"><img src="mae.png"><div class="card-nome">Mãe</div></div>
+            <div class="card-pessoal"><img src="pai.png"><div class="card-nome">Pai</div></div>
+            <div class="card-pessoal"><img src="jami.png"><div class="card-nome">Jami</div></div>
+            <div class="card-pessoal"><img src="gato.png"><div class="card-nome">Gato</div></div>
+            <div class="card-pessoal"><img src="pato.png"><div class="card-nome">Pato</div></div>
+            <div class="card-pessoal"><img src="coelho.png"><div class="card-nome">Coelho</div></div>
+            <div class="card-pessoal"><img src="urso.png"><div class="card-nome">Urso</div></div>
+            <div class="card-pessoal"><img src="tartaruga.png"><div class="card-nome">Tartaruga</div></div>
+            <div class="card-pessoal"><img src="passarinho.png"><div class="card-nome">Pássaro</div></div>
         </div>
-        <div class="item-box">
-            <p>Vídeo 02</p>
-            <iframe class="video-player" src="https://www.youtube.com/embed/XqZsoesa55w" allowfullscreen></iframe>
+    </div>
+
+    <div id="v" class="section">
+        <div class="media-box">
+            <iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen></iframe>
         </div>
-        <p>Espaços 03 a 50 reservados...</p>
+        <div class="placeholder-box">Mais novidades em breve...</div>
     </div>
-</div>
 
-<div id="musicas" class="secao">
-    <h2>🎵 Minhas 50 Músicas</h2>
-    <div class="lista-itens">
-        <div class="item-box">Música 01 - Disponível</div>
-        <div class="item-box">Música 02 - Disponível</div>
-        <div class="item-box">Música 03 a 50 - Disponível</div>
+    <div id="m" class="section">
+        <div class="placeholder-box">Prepare o fone de ouvido! 🎵</div>
     </div>
-</div>
 
-<div id="jogos" class="secao">
-    <h2>🎮 Meus 50 Jogos</h2>
-    <div class="lista-itens">
-        <div class="item-box">Jogo 01 - Disponível</div>
-        <div class="item-box">Jogo 02 - Disponível</div>
-        <div class="item-box">Jogo 03 a 50 - Disponível</div>
+    <div id="j" class="section">
+        <div class="placeholder-box">Em breve, diversão interativa aqui. 🎮</div>
     </div>
-</div>
 
-<div id="personagens" class="secao">
-    <h2>Nossos Personagens</h2>
-    <div class="grade">
-        <div class="caixa"><img src="pj.png"><p>PJ BabyPop</p></div>
-        <div class="caixa"><img src="mia.png"><p>Mia</p></div>
-        <div class="caixa"><img src="mio.png"><p>Mio</p></div>
-        <div class="caixa"><img src="mae.png"><p>Mãe</p></div>
-        <div class="caixa"><img src="pai.png"><p>Pai</p></div>
-        <div class="caixa"><img src="jami.png"><p>Jami</p></div>
-        <div class="caixa"><img src="gato.png"><p>Gato</p></div>
-        <div class="caixa"><img src="pato.png"><p>Pato</p></div>
-        <div class="caixa"><img src="coelho.png"><p>Coelho</p></div>
-        <div class="caixa"><img src="urso.png"><p>Urso</p></div>
-        <div class="caixa"><img src="tartaruga.png"><p>Tartaruga</p></div>
-        <div class="caixa"><img src="passarinho.png"><p>Passarinho</p></div>
-    </div>
-</div>
+</main>
 
 </body>
 </html>
