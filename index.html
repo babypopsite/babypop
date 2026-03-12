@@ -3,37 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BabyPop - Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+    <title>BabyPop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; } /* Faz a página deslizar ao clicar no botão */
-        body {
-            background: linear-gradient(to bottom, #87ceeb, #7CFC00);
-            font-family: 'Fredoka', sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 { color: #FF69B4; font-size: 70px; text-shadow: 3px 3px 0 white; margin: 10px 0; }
+        body { background: linear-gradient(to bottom, #87ceeb, #7CFC00); font-family: 'Fredoka', sans-serif; margin: 0; text-align: center; }
+        header { background: white; padding: 15px; border-bottom: 5px solid #FFD700; }
+        h1 { color: #FF69B4; margin: 0; font-size: 40px; }
         
-        /* MENU DE NAVEGAÇÃO (BOTÕES QUE FUNCIONAM) */
-        .menu-fixo {
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            z-index: 1000;
-            border-bottom: 5px solid #FFD700;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            border-radius: 0 0 30px 30px;
-        }
-        .botao {
-            background-color: #FFD700;
-            border: 3px solid #000;
-            border-radius: 50px;
+        .menu { margin: 15px 0; }
+        .btn { display: inline-block; background: #FFD700; color: black; padding: 12px 20px; margin: 5px; border-radius: 25px; text-decoration: none; font-weight: bold; border: 2px solid black; cursor: pointer; }
+
+        /* Esconde as seções por padrão */
+        .secao { display: none; background: white; margin: 20px auto; padding: 30px; border-radius: 30px; border: 5px solid #FF69B4; max-width: 1000px; }
+        
+        /* Mostra a seção quando ela for clicada (alvo) */
+        .secao:target { display: block; }
+        
+        /* Mostra a aba de Personagens por padrão ao abrir o site */
+        #inicio { display: block; }
+        #inicio:has(~ .secao:target) { display: none; }
+
+        .grade { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .caixa { width: 300px; border: 2px solid #ddd; border-radius: 20px; padding: 10px; background: #fff; }
+        .caixa img { width: 300px; height: 300px; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>BabyPop</h1>
+    <div class="menu">
+        <a href="#videos" class="btn">📺 VÍDEOS</a>
+        <a href="#musicas" class="btn">🎵 MÚSICAS</a>
+        <a href="#jogos" class="btn">🎮 JOGOS</a>
+        <a href="#inicio" class="btn">🎈 PERSONAGENS</a>
+    </div>
+</header>
+
+<div id="inicio" class="secao" style="display: block;">
+    <h2>Nossos Personagens</h2>
+    <div class="grade">
+        <div class="caixa"><img src="pj.png"><p>PJ BabyPop</p></div>
+        <div class="caixa"><img src="mia.png"><p>Mia</p></div>
+        <div class="caixa"><img src="mio.png"><p>Mio</p></div>
+        <div class="caixa"><img src="mae.png"><p>Mãe</p></div>
+        <div class="caixa"><img src="pai.png"><p>Pai</p></div>
+        <div class="caixa"><img src="jami.png"><p>Jami</p></div>
+        <div class="caixa"><img src="gato.png"><p>Gato</p></div>
+        <div class="caixa"><img src="pato.png"><p>Pato</p></div>
+        <div class="caixa"><img src="coelho.png"><p>Coelho</p></div>
+        <div class="caixa"><img src="urso.png"><p>Urso</p></div>
+        <div class="caixa"><img src="tartaruga.png"><p>Tartaruga</p></div>
+        <div class="caixa"><img src="passarinho.png"><p>Passarinho</p></div>
+    </div>
+</div>
+
+<div id="videos" class="secao">
+    <h2>📺 Meus Vídeos</h2>
+    <p>Aqui você verá os vídeos do YouTube.</p>
+</div>
+
+<div id="musicas" class="secao">
+    <h2>🎵 Minhas Músicas</h2>
+    <p>Aqui você ouvirá as canções.</p>
+</div>
+
+<div id="jogos" class="secao">
+    <h2>🎮 Meus Jogos</h2>
+    <p>Aqui estarão os jogos interativos.</p>
+</div>
+
+</body>
+</html>
             padding: 15px 30px;
             font-size: 20px;
             font-weight: bold;
