@@ -2,38 +2,131 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>BabyPop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BabyPop - Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cor-ceu: #87ceeb;
+            --cor-grama: #7CFC00;
+            --cor-botao: #FFD700;
+            --cor-texto: #333;
+            --cor-destaque: #FF69B4;
+        }
+
         body {
-            background: linear-gradient(to bottom, #87ceeb, #7CFC00);
+            background: linear-gradient(to bottom, var(--cor-ceu), var(--cor-grama));
             font-family: 'Fredoka', sans-serif;
+            margin: 0;
+            padding: 20px;
             text-align: center;
-            padding: 50px;
+            color: var(--cor-texto);
         }
-        h1 {
-            color: #FF69B4;
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 24px;
-            color: #333333;
-        }
+
+        h1 { color: var(--cor-destaque); font-size: clamp(40px, 8vw, 70px); text-shadow: 3px 3px 0 white; margin-bottom: 10px; }
+        .slogan { font-size: 24px; font-weight: bold; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+
+        /* MENU DE BOTÕES */
+        .menu { margin: 30px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .botao {
-            display: inline-block;
-            margin: 20px;
-            padding: 20px 40px;
-            font-size: 24px;
-            background-color: #FFD700;
+            background-color: var(--cor-botao);
+            border: 4px solid white;
+            border-radius: 50px;
+            padding: 15px 35px;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            box-shadow: 0 6px 0 #b8860b;
+            transition: 0.2s;
+        }
+        .botao:hover { transform: scale(1.05); background-color: #fff; }
+
+        /* SEÇÕES */
+        .secao {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 40px 20px;
+            margin: 40px auto;
+            max-width: 1100px;
+            border: 5px solid white;
+        }
+        h2 { color: var(--cor-destaque); font-size: 35px; margin-bottom: 25px; }
+
+        /* GRADE DE PERSONAGENS (IGUAL COCOMELON) */
+        .grid-personagens {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+        .card {
+            background: white;
             border-radius: 20px;
-            cursor: pointer;
-            transition: transform 0.2s;
+            padding: 15px;
+            border: 4px solid var(--cor-ceu);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .botao:hover {
-            transform: scale(1.1);
+        .card img {
+            width: 100%;
+            height: 200px; /* Tamanho único fixo */
+            object-fit: contain;
+            border-radius: 15px;
         }
-        img {
-            width: 300px;
+        .nome-char { font-size: 18px; font-weight: bold; margin-top: 10px; color: #555; }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 600px) { .botao { width: 80%; } }
+    </style>
+</head>
+<body>
+
+    <h1>BabyPop</h1>
+    <p class="slogan">Aprender brincando!</p>
+
+    <div class="menu">
+        <a href="#videos" class="botao">📺 VÍDEOS</a>
+        <a href="#musicas" class="botao">🎵 MÚSICAS</a>
+        <a href="#jogos" class="botao">🎮 JOGOS</a>
+    </div>
+
+    <div id="videos" class="secao">
+        <h2>Área de Vídeos</h2>
+        <p>Espaço reservado para os vídeos do YouTube e TikTok.</p>
+    </div>
+
+    <div id="musicas" class="secao">
+        <h2>Área de Músicas</h2>
+        <p>Espaço reservado para suas músicas e playlists.</p>
+    </div>
+
+    <div id="jogos" class="secao">
+        <h2>Área de Jogos</h2>
+        <p>Espaço reservado para jogos educativos.</p>
+    </div>
+
+    <div class="secao">
+        <h2>Nossos Personagens</h2>
+        <div class="grid-personagens">
+            <div class="card"><img src="pj.png" alt="PJ"><div class="nome-char">PJ BabyPop</div></div>
+            <div class="card"><img src="mia.png" alt="Mia"><div class="nome-char">Mia</div></div>
+            <div class="card"><img src="mio.png" alt="Mio"><div class="nome-char">Mio</div></div>
+            <div class="card"><img src="mae.png" alt="Mãe"><div class="nome-char">Mãe</div></div>
+            <div class="card"><img src="pai.png" alt="Pai"><div class="nome-char">Pai</div></div>
+            <div class="card"><img src="jami.png" alt="Jami"><div class="nome-char">Jami o Cachorrinho</div></div>
+            <div class="card"><img src="gato.png" alt="Gato"><div class="nome-char">Gato Cinza</div></div>
+            <div class="card"><img src="pato.png" alt="Pato"><div class="nome-char">Pato Amarelo</div></div>
+            <div class="card"><img src="coelho.png" alt="Coelho"><div class="nome-char">Coelho Albino</div></div>
+            <div class="card"><img src="urso.png" alt="Urso"><div class="nome-char">Urso Marrom</div></div>
+            <div class="card"><img src="tartaruga.png" alt="Tartaruga"><div class="nome-char">Tartaruga Verde</div></div>
+            <div class="card"><img src="passarinho.png" alt="Passarinho"><div class="nome-char">Passarinho Azul</div></div>
+        </div>
+    </div>
+
+</body>
+</html>
             height: 300px;
             object-fit: contain;
             margin: 10px;
