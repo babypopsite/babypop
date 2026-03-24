@@ -6,7 +6,7 @@
 }
 
 @layer base {
- body {
+  body {
     @apply m-0 p-0 overflow-x-hidden;
     background: linear-gradient(135deg, #3b82f6, #ec4899, #eab308, #22c55e, #ef4444);
     background-size: 400% 400%;
